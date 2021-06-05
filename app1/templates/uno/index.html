@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block title %}Ejercicio 1{% endblock title %}
+
+{% block container %}
+
+<div class="row">
+  <br>
+  <div class="col s12 l3">
+    <form action="" method="post">
+      {% csrf_token %}
+      <br><br><br>
+      <div class="input-field ">
+        <input id="txtMonto" name="txtMonto" type="text" class="validate">
+        <label for="txtMonto">Monto</label>
+      </div>
+      <div class="input-field ">
+        <input id="txtTasa" name="txtTasa" type="text" class="validate">
+        <label for="txtTasa">Tasa</label>
+      </div>
+      <div class="input-field ">
+        <input id="txtPlazo" name="txtPlazo" type="text" class="validate">
+        <label for="txtPlazo">Plazo</label>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Agregar
+        <i class="material-icons right">add</i>
+      </button>
+    </form>
+  </div>
+  <div class="col s12 l9"><table>
+    <h4>Planillas: {{planilla|length}}</h4>
+    <table class='highlight responsive-table centered'>
+      <thead>
+        <tr>
+          <th>Monto</th>
+          <th>Tasa</th>
+          <th>Plazo anual</th>
+          <th>Cuota</th>
+          <th>Total a Pagar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in planilla %}
+        <tr>
+          <td>L.{{p.Monto}}</td>
+          <td>{{p.Tasa }}%</td>
+          <td>{{p.Plazo}} años</td>
+          <td>L.{{p.Cuota}}</td>
+          <td>L.{{p.Total}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock container %}
